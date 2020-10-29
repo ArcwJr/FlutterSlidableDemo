@@ -1,1 +1,9 @@
-class Bikes{  String bikeNumber;  String bikeName;  String bikeprice;  Bikes({this.bikeNumber,this.bikeName,this.bikeprice});}
+
+class PatientDetails{
+  int patNumber;
+  String patName;
+  int age;
+
+  PatientDetails({this.patNumber,this.patName,this.age});
+
+}
