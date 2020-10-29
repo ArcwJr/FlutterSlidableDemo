@@ -1,58 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+
 import 'constructor.dart';
+import 'patient_list.dart';
 
-
-final List<Bikes> _bikes = <Bikes>[
-  Bikes(bikeNumber: '1', bikeName: 'Honda', bikeprice: '2000 won'),
-  Bikes(bikeNumber: '2', bikeName: 'KTM', bikeprice: '5000 won'),
-  Bikes(bikeNumber: '3', bikeName: 'TVS', bikeprice: '7000 won'),
-];
-
-
-void main() =>
+ void main() =>
     runApp(MaterialApp(
-      home: SlideDemo(),
+      home: PatientList(),
       debugShowCheckedModeBanner: false,
     ));
 
-class SlideDemo extends StatelessWidget {
+class HomeUi extends StatelessWidget {
+  final List<PatientDetails> _pats;
+  HomeUi(this._pats);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Slidable '),
+        title: Text('Patients '),
       ),
       body: ListView.builder(
-        itemCount: _bikes.length,
+        itemCount: _pats.length,
         itemBuilder: (context, index) {
-          final bikes = _bikes[index];
+          final pats = _pats[index];
           return Slidable(child: Container(
             color: Colors.white,
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.green,
                 foregroundColor: Colors.white,
-                child: Text(bikes.bikeNumber),
+                child: Text((pats.patNumber).toString()),
               ),
-              title: Text(bikes.bikeName),
-              subtitle: Text(bikes.bikeprice),
+              title: Text(pats.patName),
+              subtitle: Text('Age : '+(pats.age).toString()),
             ),
           ), actionPane: SlidableBehindActionPane(),
           actions: <Widget>[
             IconSlideAction(
-              caption: 'share',
+              caption: 'log',
               color: Colors.blue,
-              icon: Icons.share,
-              onTap: () => print('share'),
+              icon: Icons.leaderboard,
+              onTap: () => print('log'),
             ),
           ],
             secondaryActions: <Widget>[
               IconSlideAction(
-                caption: 'more',
+                caption: 'edit',
                 color: Colors.yellow,
-                icon: Icons.more_horiz,
-                onTap: ()=>print('more'),
+                icon: Icons.edit_outlined,
+                onTap: ()=>print('edit'),
               ),
               IconSlideAction(
                 caption: 'delete',
@@ -67,3 +64,4 @@ class SlideDemo extends StatelessWidget {
     );
   }
 }
+
